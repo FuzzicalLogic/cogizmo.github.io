@@ -1,6 +1,21 @@
 <html>
 <head>
     <title>Cogizmo</title>
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyC3NZP3BVNZTFnqLHB9I51_DFeMsCtRdkE",
+        authDomain: "cogizmo-on-github.firebaseapp.com",
+        databaseURL: "https://cogizmo-on-github.firebaseio.com",
+        projectId: "cogizmo-on-github",
+        storageBucket: "cogizmo-on-github.appspot.com",
+        messagingSenderId: "1040737512834"
+      };
+      firebase.initializeApp(config);
+    </script>
+
     <script src="components/cogizmo/src/Cogizmo.js"></script>
 </head>
 <body>
