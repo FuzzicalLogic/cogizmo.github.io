@@ -16,9 +16,43 @@
       firebase.initializeApp(config);
     </script>
 
-    <script src="components/cogizmo/src/Cogizmo.js"></script>
+    <script type="module" src="components/cogizmo/src/Cogizmo.mjs" use-global></script>
+    <script nomodule src="components/cogizmo/src/Cogizmo.js"></script>
 </head>
 <body>
-    <p>This is just a test.</p>
+    <header></header>
+    <main>
+        <p>This is just a test.</p>
+    </main>
+    <footer></footer>
+    <script>
+        let v = '{   "queryString": "org:cogizmo" }';
+        let q = `query myOrgRepos($queryString: String!) {
+	search(query: $queryString, type: REPOSITORY, first: 10) {
+		repositoryCount edges {
+			node {
+			    ... on Repository {
+					name
+				}
+			}
+		}
+	}
+}`;
+        fetch('https://api.github.com/graphql', {
+                method: 'POST',
+                Accept: 'api_version=4',
+                'Content-Type': 'application/json',
+                body: JSON.stringify({ "query":q, "variables":v}),
+                headers: {
+                    "Authorization": "Token f402a51cfd8030db30d2d5e29e18d35f8ef34d44"
+                }
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                console.log(data)
+            })
+    </script>
 </body>
 </html>
